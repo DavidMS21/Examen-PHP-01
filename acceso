@@ -1,0 +1,11 @@
+<?php
+// Datos del usuario
+$username = "s2credit";
+$developerFirstName = "David";
+
+// Generar la contraseña combinando el nombre de usuario y el primer nombre del desarrollador
+$password = md5($username . $developerFirstName);
+
+// Almacenar o usar la contraseña generada
+echo "Contraseña generada: " . $password;
+?>
