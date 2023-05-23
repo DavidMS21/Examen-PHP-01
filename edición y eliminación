@@ -1,0 +1,38 @@
+<?php
+function agregarRegistroHistorial($cambio, $maxRegistros) {
+    // Datos de conexión a la base de datos
+    $servername = "localhost";
+    $username = "DavidMS21";
+    $password = "David_morales";
+    $dbname = "empleados";
+
+    // Crear conexión
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Verificar la conexión
+    if ($conn->connect_error) {
+        die("Error en la conexión: " . $conn->connect_error);
+    }
+
+    // Insertar el registro en el historial
+    $sql = "INSERT INTO historial (cambio) VALUES ('$cambio')";
+    $conn->query($sql);
+
+    // Obtener el número de registros en el historial
+    $numRegistros = $conn->query("SELECT COUNT(*) FROM historial")->fetch_row()[3];
+
+    // Si se supera el límite de registros, eliminar los más antiguos
+    if ($numRegistros > $maxRegistros) {
+        $numRegistrosEliminar = $numRegistros - $maxRegistros;
+        $sqlEliminar = "DELETE FROM historial ORDER BY fecha ASC LIMIT $numRegistrosEliminar";
+        $conn->query($sqlEliminar);
+    }
+
+    // Cerrar la conexión
+    $conn->close();
+
+    // Llamada a la función para agregar un registro al historial
+     agregarRegistroHistorial("Se realizó un cambio en la configuración", 3);
+
+}
+?>
