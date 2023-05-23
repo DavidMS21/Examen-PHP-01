@@ -1,0 +1,31 @@
+<?php
+// Datos de conexión a la base de datos
+$servername = "localhost";
+$username = "DavidMS21";
+$password = "David_morales";
+$dbname = "empleados";
+
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Error en la conexión: " . $conn->connect_error);
+}
+
+// ID del registro a eliminar (por ejemplo, si se pasa a través de una variable GET)
+$id = $_GET['id'];
+
+// Consulta SQL para eliminar el registro
+$sql = "DELETE FROM nombre_de_la_tabla WHERE id = $id";
+
+// Ejecutar la consulta y verificar si se completó correctamente
+if ($conn->query($sql) === TRUE) {
+    echo "Registro eliminado correctamente.";
+} else {
+    echo "Error al eliminar el registro: " . $conn->error;
+}
+
+// Cerrar la conexión
+$conn->close();
+?>
