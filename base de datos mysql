@@ -1,0 +1,14 @@
+CREATE TABLE empleados (
+  id_empleado int(11) NOT NULL AUTO_INCREMENT,
+  nombres mediumtext NOT NULL,
+  apellidos mediumtext NOT NULL,
+  correo mediumtext NOT NULL,
+  curp varchar(30) DEFAULT NULL,
+  puesto mediumtext NOT NULL,
+  fecha_de_registro timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id_empleado)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO `empleados` (`id_empleado`, `nombres`, `apellidos`, `correo`, `curp`, `puesto`, `fecha_de_registro`) 
+VALUES
+ (NULL, 'David', 'Morales Seepulveda', 'david_morales_sepulveda@hotmail.com', 'MOSD900306HDFRPV00', 'PROGRAMADOR', current_timestamp());
