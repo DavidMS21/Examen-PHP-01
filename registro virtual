@@ -1,0 +1,33 @@
+<?php
+// Datos de conexión a la base de datos
+$servername = "localhost";
+$username = "DavidMS21";
+$password = "David_morales";
+$dbname = "empleados";
+
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Error en la conexión: " . $conn->connect_error);
+}
+
+// Datos del registro virtual a insertar
+$nombre = "Ejemplo";
+$descripcion = "Esto es un registro virtual.";
+$valor = 10;
+
+// Consulta SQL para insertar el registro virtual
+$sql = "INSERT INTO nombre_de_la_tabla (nombre, descripcion, valor) VALUES ('$nombre', '$descripcion', $valor)";
+
+// Ejecutar la consulta y verificar si se completó correctamente
+if ($conn->query($sql) === TRUE) {
+    echo "Registro virtual agregado correctamente.";
+} else {
+    echo "Error al agregar el registro virtual: " . $conn->error;
+}
+
+// Cerrar la conexión
+$conn->close();
+?>
